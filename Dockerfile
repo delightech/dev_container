@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-#SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-c"]
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -44,3 +44,9 @@ RUN mkdir -p ~/.rbenv/plugins && \
 RUN ~/.rbenv/bin/rbenv install 2.6.6 && \
     ~/.rbenv/bin/rbenv global 2.6.6 && \
     ~/.rbenv/bin/rbenv exec gem install bundler
+
+# install python
+
+# install nodejs
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+RUN source ~/.nvm/nvm.sh && nvm install v12.13.1
