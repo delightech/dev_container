@@ -2,6 +2,7 @@ version: '3'
 services:
   batch:
     build: .
-    container_name: dev-container
+    container_name: dev_container
+    tty: true
     volumes:
       - ./app:/app

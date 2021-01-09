@@ -1,1 +1,1 @@
-docker run -v $PWD/app:/app --name dev-container -dit dev-image
+docker run -v $PWD/app:/app --name dev_container -dit dev_image
