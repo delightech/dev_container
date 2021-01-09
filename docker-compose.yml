@@ -1,0 +1,7 @@
+version: '3'
+services:
+  batch:
+    build: .
+    container_name: dev-container
+    volumes:
+      - ./app:/app
