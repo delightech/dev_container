@@ -108,3 +108,13 @@ RUN ~/.pyenv/bin/pyenv install 3.8.7 && \
 # install nodejs
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 RUN source ~/.nvm/nvm.sh && nvm install v12.13.1
+
+# add env
+RUN echo -e 'if [ -f /app/.bashrc ]; then\n  source /app/.bashrc\nfi' >> ~/.bashrc
+# install dein for vim
+RUN mkdir -p ~/.cache/dein
+RUN cd ~/.cache/dein
+RUN curl -O https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+RUN sh installer.sh ~/.cache/dein && rm installer.sh
+# deploy .vimrc
+RUN echo -e 'if [ -f /app/.vimrc ]; then\n  cp /app/.vimrc ~/\nfi' >> ~/.bashrc
