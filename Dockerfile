@@ -111,10 +111,7 @@ RUN source ~/.nvm/nvm.sh && nvm install v12.13.1
 
 # add env
 RUN echo -e 'if [ -f /app/.bashrc ]; then\n  source /app/.bashrc\nfi' >> ~/.bashrc
-# install dein for vim
-RUN mkdir -p ~/.cache/dein && \
-    curl -O https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
-    && sh installer.sh ~/.cache/dein \
-    && rm installer.sh
+# install vim plugin manager
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # deploy .vimrc
 RUN echo -e 'if [ -f /app/.vimrc ]; then\n  cp /app/.vimrc ~/\nfi' >> ~/.bashrc
