@@ -10,6 +10,7 @@ services:
   sftp:
     image: atmoz/sftp
     container_name: sftp_server
+    tty: true
     volumes:
         - ./app/remote:/home/sftp_user/uploaded
     ports:
