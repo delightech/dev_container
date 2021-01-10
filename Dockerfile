@@ -5,9 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # see dockerfile best practice
 # https://docs.docker.jp/engine/articles/dockerfile_best-practice.html
-
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     # for ruby
+    make \
     autoconf \
     bison \
     build-essential \
@@ -24,6 +24,21 @@ RUN apt-get update && apt-get install -y \
     vim \
     tzdata \
     language-pack-ja \
+
+    # for python
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    xz-utils \
+    tk-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    liblzma-dev \
+
+    # for nodejs
     gconf-service \
     libasound2 \
     libatk1.0-0 \
@@ -62,8 +77,6 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     lsb-release \
     xdg-utils \
-    wget \
-    curl \
   && rm -rf /var/lib/apt/lists/*
 
 # Shift timezone to Asia/Tokyo.
@@ -87,6 +100,13 @@ RUN ~/.rbenv/bin/rbenv install 2.6.6 && \
     ~/.rbenv/bin/rbenv exec gem install bundler
 
 # install python
+RUN git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+RUN echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
+
+RUN ~/.pyenv/bin/pyenv install 3.8.7 && \
+    ~/.pyenv/bin/pyenv global 3.8.7
 
 # install nodejs
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
