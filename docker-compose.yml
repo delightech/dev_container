@@ -6,3 +6,12 @@ services:
     tty: true
     volumes:
       - ./app:/app
+
+  sftp:
+    image: atmoz/sftp
+    container_name: sftp_server
+    volumes:
+        - ./app/remote:/home/sftp_user/uploaded
+    ports:
+        - "2222:22"
+    command: sftp_user:Passw0rd:1001

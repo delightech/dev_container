@@ -24,8 +24,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     vim \
     tzdata \
     language-pack-ja \
-
-    # for python
     libbz2-dev \
     libreadline-dev \
     libsqlite3-dev \
@@ -37,8 +35,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libxml2-dev \
     libxmlsec1-dev \
     liblzma-dev \
-
-    # for nodejs
     gconf-service \
     libasound2 \
     libatk1.0-0 \
@@ -106,7 +102,8 @@ RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 RUN echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 
 RUN ~/.pyenv/bin/pyenv install 3.8.7 && \
-    ~/.pyenv/bin/pyenv global 3.8.7
+    ~/.pyenv/bin/pyenv global 3.8.7 && \
+    ~/.pyenv/shims/python -m pip install --upgrade pip
 
 # install nodejs
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
