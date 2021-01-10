@@ -1,4 +1,7 @@
 require 'net/sftp'
+
+# コンテナ内でSFTP通信ができることを確認するコード
+
 csv_str = 'hogehogeho,hogehoge,hogehoge' # csvフォーマットにした文字列が入っている
 path = './uploaded' # 出力先のファイルパス
 filename = 'hoge.csv' # 出力したいファイル名
