@@ -14,5 +14,5 @@ services:
     volumes:
         - ./app/remote:/home/sftp_user/uploaded
     ports:
-        - "2222:22"
+        - "10220:22"
     command: sftp_user:Passw0rd:1001
