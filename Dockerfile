@@ -6,7 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 # see dockerfile best practice
 # https://docs.docker.jp/engine/articles/dockerfile_best-practice.html
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    # for ruby
     make \
     autoconf \
     bison \
